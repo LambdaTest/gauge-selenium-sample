@@ -3,6 +3,11 @@
 
 ---
 
+### Prerequisites
+
+1. Gauge plugin must be configured with your IDE or Gauge must be installled if you are running test from CMD/Terminal
+2. Maven must be installed
+
 ### Environment Setup
 
 1. Global Dependencies
@@ -25,12 +30,10 @@
 3. Setup
     * Clone [gauge-selenium-sample](https://github.com/LambdaTest/gauge-selenium-sample.git) from GitHub.
     * Navigate to the cloned directory
-    * Install project dependencies
+    * Compile maven dependencies
     ```
-    $ Command Required
+    $ mvn compile
     ```
-
-To use Karma with LambdaTest, make sure you have the 2 environment variables LT_USERNAME and LT_ACCESS_KEY set. To obtain a username and access_key, sign up for free [here](https://lambdatest.com)).
 
 #####  Routing traffic through your local machine
 - Set tunnel value to `true` in test capabilities
@@ -47,18 +50,10 @@ Some Safari & IE browsers, doesn't support automatic resolution of the URL strin
 * To Start Test:
     - Navigate to gauge-selenium-sample
     - Run following command
-   * Test in Single
-    ```
-    $ command required
-    ```
-    or 
-     ```
-    $ command required
-    ```
-    * Test in Parallel
-     ```
-    $ command required
-    ```
+   
+    ```mvn clean install``` OR ```mvn test```
+   
+ ### Note: You can also mention your LambdaTest credentials in env/default.properties file
 
 ## About LambdaTest
 [LambdaTest](https://www.lambdatest.com/) is a cloud based selenium grid infrastructure that can help you run automated cross browser compatibility tests on 2000+ different browser and operating system environments. LambdaTest supports all programming languages and frameworks that are supported with Selenium, and have easy integrations with all popular CI/CD platforms. It's a perfect solution to bring your [selenium automation testing](https://www.lambdatest.com/selenium-automation) to cloud based infrastructure that not only helps you increase your test coverage over multiple desktop and mobile browsers, but also allows you to cut down your test execution time by running tests on parallel.
