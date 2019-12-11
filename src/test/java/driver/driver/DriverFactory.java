@@ -19,8 +19,8 @@ public class DriverFactory {
     // There are various implementations for this depending on browser/OS. The required browser/OS can be set as an environment variable.
     // Refer http://getgauge.io/documentation/user/current/managing_environments/README.html
 
-    private static final String username = System.getenv("Your_Username");
-    private static final String accesskey = System.getenv("Your_AccessKey");
+    private static final String username = System.getenv("LT_USERNAME");
+    private static final String accesskey = System.getenv("LT_ACCESS_KEY");
     public static final String gridURL = "@hub.lambdatest.com/wd/hub";
     public String status = "passed";
 
