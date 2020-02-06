@@ -41,12 +41,9 @@ public class DriverFactory {
         capabilities.setCapability("platform", System.getenv("PLATFORM"));
         capabilities.setCapability("build", "Java Gauge Framework");
         capabilities.setCapability("name", "Sample Gauge Test");
-        capabilities.setCapability("network", true); // To enable network logs
-        capabilities.setCapability("visual", true); // To enable step by step screenshot
-        capabilities.setCapability("video", true); // To enable video recording
-        capabilities.setCapability("console", true); // To capture console logs
-        capabilities.setCapability("geoLocation","US");
-        // capabilities.setCapability("tunnel", true);
+        capabilities.setCapability("network", false); // To enable network logs
+        capabilities.setCapability("visual", false); // To enable step by step screenshot
+        capabilities.setCapability("console", false); // To capture console logs
 
         driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
         } catch (MalformedURLException e) {
