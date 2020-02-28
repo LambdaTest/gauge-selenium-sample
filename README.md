@@ -1,4 +1,4 @@
-# gauge-selenium-sample
+# Gauge Selenium Sample
 ![LambdaTest Logo](https://www.lambdatest.com/static/images/logo.svg)
 
 ---
