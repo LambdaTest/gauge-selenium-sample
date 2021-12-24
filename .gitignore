@@ -1,1 +1,5 @@
-target\
+target
+logs
+reports
+.gauge
+.vscode

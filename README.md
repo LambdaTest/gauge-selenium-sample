@@ -294,8 +294,8 @@ public class StepImplementation_Google {
 The next step now is to define the configuration to run the test suite in browsers. To perform this, we would have to give the browser specification. The Browser specification could be provided in env folder’s default.properties file as
 
 **BROWSER** = CHROME
-**BROWSER_VERSION** = 78
-**PLATFORM** = WIN10
+**BROWSER_VERSION** = latest
+**PLATFORM** = Windows 10
 
 ![env Folder- Browser Specification](https://github.com/LambdaTest/gauge-selenium-sample/blob/master/Tutorial-Images/env%20Folder-%20Browser%20Specification.png?raw=true)
 
