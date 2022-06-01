@@ -1,58 +1,224 @@
-# Gauge-Selenium-Sample
-![Java](https://www.lambdatest.com/support/assets/images/og-images/Gauge-Automation-Tests.jpg)
+# Selenium Automation Testing With Gauge On LambdaTest
 
-### Prerequisites
-1. Install and set environment variable for java.
-    * Windows - https://www.oracle.com/java/technologies/downloads/
-    * Linux - ```  sudo apt-get install openjdk-8-jre  ```
-    * MacOS - Java should already be present on Mac OS X by default.
-2 Install and set environment varibale for Maven.
-    * Windows - https://maven.apache.org/install.html
-    * Linux/ MacOS -  [Homebrew](http://brew.sh/) (Easier)
-    ```
-     install maven
-    ```
-3. Install Gauge from [here](https://docs.gauge.org/getting_started/installing-gauge.html?os=windows&language=javascript&ide=vscode).
-    
-### Run your First Test
-1. Clone the Gauge-Selenium-Sample repository. 
-```
-git clone https://github.com/LambdaTest/gauge-selenium-sample
-```
-2. Next get into Gauge-Selenium-Sample folder, and import Lamabdatest Credentials. You can get these from lambdatest automation dashboard.
-   <p align="center">
-   <b>For Linux/macOS:</b>:
- 
-```
-export LT_USERNAME="YOUR_USERNAME"
-export LT_ACCESS_KEY="YOUR ACCESS KEY"
-```
+![image](https://user-images.githubusercontent.com/70570645/171434468-f7c1b5bb-91cd-4165-84b3-f62b8b1be433.png)
+
+*Learn how to use Gauge framework to configure and run your Java automation testing scripts on the LambdaTest platform.*
+
+
 <p align="center">
-   <b>For Windows:</b>
+  <a href="https://www.lambdatest.com/blog/" target="_bank">Blog</a>
+  &nbsp; &#8901; &nbsp;
+  <a href="https://www.lambdatest.com/support/docs/" target="_bank">Docs</a>
+  &nbsp; &#8901; &nbsp;
+  <a href="https://www.lambdatest.com/learning-hub/" target="_bank">Learning Hub</a>
+  &nbsp; &#8901; &nbsp;
+  <a href="https://www.lambdatest.com/newsletter/" target="_bank">Newsletter</a>
+  &nbsp; &#8901; &nbsp;
+  <a href="https://www.lambdatest.com/certifications/" target="_bank">Certifications</a>
+  &nbsp; &#8901; &nbsp;
+  <a href="https://www.youtube.com/c/LambdaTest" target="_bank">YouTube</a>
+</p>
+&emsp;
+&emsp;
+&emsp;
 
+
+## Table Of Contents
+
+* [Pre-requisites](#pre-requisites)
+* [Run Your First Test](#run-your-first-test)
+* [Parallel Testing With Gauge](#running-parallel-tests-using-gauge)
+* [Local Testing With Gauge](#testing-locally-hosted-or-privately-hosted-projects)
+
+## Pre-requisites
+
+Before you can start performing Java automation testing with Selenium, you would need to:
+
+- Install the latest **Java development environment** i.e. **JDK 1.6** or higher. We recommend using the latest version.
+
+- Download the latest **Selenium Client** and its **WebDriver bindings** from the [official website](https://www.selenium.dev/downloads/). Latest versions of Selenium Client and WebDriver are ideal for running your automation script on LambdaTest Selenium cloud grid.
+
+- Install **Maven**. It can be downloaded and installed following the steps from [the official website](https://maven.apache.org/). Maven can also be installed easily on **Linux/MacOS** using [Homebrew](https://brew.sh/) package manager.
+
+- Install the **Gauge** framework from its [official website](https://docs.gauge.org/getting_started/installing-gauge.html?os=windows&language=null&ide=null).
+
+### Cloning Repo And Installing Dependencies
+
+**Step 1:** Clone the LambdaTest’s Gauge-Selenium-Sample repository and navigate to the code directory as shown below:
+
+```bash
+git clone https://github.com/LambdaTest/gauge-selenium-sample
+cd gauge-selenium-sample
 ```
-set LT_USERNAME="YOUR_USERNAME"
-set LT_ACCESS_KEY="YOUR ACCESS KEY"
+
+You may also want to run the command below to check for outdated dependencies.
+
+```bash
+mvn versions:display-dependency-updates
 ```
 
-Step 3. Run the test.
+**Step 2:** Install the mandatory Selenium dependencies for Maven by running the below command:
+
+```bash
+mvn compile
 ```
-$ mvn compile 
-$ mvn clean install OR $ mvn test 
+
+### Setting Up Your Authentication
+
+Make sure you have your LambdaTest credentials with you to run test automation scripts on Selenium Grid. You can get these credentials from the [LambdaTest Automation Dashboard](https://automation.lambdatest.com/build) or by your [LambdaTest Profile](https://accounts.lambdatest.com/login).
+
+**Step 3:** Set LambdaTest **Username** and **Access Key** in environment variables.
+
+* For **Linux/macOS**:
+  
+  ```bash
+  export LT_USERNAME="YOUR_USERNAME" 
+  export LT_ACCESS_KEY="YOUR ACCESS KEY"
+  ```
+* For **Windows**:
+  ```bash
+  set LT_USERNAME="YOUR_USERNAME" 
+  set LT_ACCESS_KEY="YOUR ACCESS KEY"
+  ```
+
+## Run Your First Test
+
+>**Test Scenario**: Check out the sample script [StepImplementation_ToDo.java](https://github.com/LambdaTest/gauge-selenium-sample/blob/master/src/test/java/driver/driver/StepImplementation_ToDo.java) for running Gauge tests. This Gauge automation script test a sample to-do list app by marking couple items as done, adding a new item to the list and finally displaying the count of pending items as output.
+
+### Configuring Your Test Capabilities
+
+**Step 4:** In the test script, you need to update your test capabilities. In this code, we are passing browser, browser version, and operating system information, along with LambdaTest Selenium grid capabilities via capabilities object. The capabilities object in the above code are defined as:
+
+```java
+DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "chrome");
+        capabilities.setCapability("version", "70.0");
+        capabilities.setCapability("platform", "win10"); // If this cap isn't specified, it will just get the any available one
+        capabilities.setCapability("build", "LambdaTestSampleApp");
+        capabilities.setCapability("name", "LambdaTestJavaSample");
+        capabilities.setCapability("network", true); // To enable network logs
+        capabilities.setCapability("visual", true); // To enable step by step screenshot
+        capabilities.setCapability("video", true); // To enable video recording
+        capabilities.setCapability("console", true); // To capture console logs
+```
+You can generate capabilities for your test requirements with the help of [Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/).
+
+### Executing The Test
+
+**Step 5:** The tests can be executed in the terminal using either of the following commands:
+
+```bash
+mvn test
 ```
 
-### Result of the Test
-You can see the test running on LambdaTest [Automation Dashboard](https://automation.lambdatest.com/build)
-![Automation Logs of LambdaTest](https://github.com/LambdaTest/gauge-selenium-sample/blob/master/Tutorial-Images/Automation%20Logs%20of%20LambdaTest.png?raw=true)
+or
 
+```bash
+mvn clean install
+```
 
-##  Testing Locally Hosted or Privately Hosted Projects
+Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on [LambdaTest Automation Dashboard](https://automation.lambdatest.com/build). 
 
-To help you perform cross browser testing of your locally stored web pages, LambdaTest provides an SSH(Secure Shell) tunnel connection with the name Lambda Tunnel. With Lambda Tunnel, you can test your locally hosted files before you make them live over the internet. You could even perform cross browser testing from different IP addresses belonging to various geographic locations. You can also use LambdaTest Tunnel to test web-apps and websites that are permissible inside your corporate firewall.
+## Run Parallel Tests Using Gauge
 
+To perform Gauge parallel testing, more than one browser specifications need to be updated in the [env folder](https://github.com/LambdaTest/gauge-selenium-sample/tree/master/env) of the project. 
+
+For instance, we have defined specifications for Chrome, Firefox, Safari and Edge in the below screenshot. Once the test is executed, all parallel browser specifications will hit on the LambdaTest cloud grid and execute simultaneously.
+
+![image](https://user-images.githubusercontent.com/70570645/170765173-b3ad947e-003f-4e64-a2dd-5bc64c99bcef.png)
+
+In case you’d need to chuck out test for any browser, you would need to either delete the folder or comment out the code in it.
+
+### Executing Parallel Tests Using Gauge
+
+To run parallel tests using **Gauge**, we would have to execute the same command we had used for single test which would be:
+
+```bash
+mvn test OR mvn clean install
+```
+
+## Testing Locally Hosted Or Privately Hosted Projects
+
+You can test your locally hosted or privately hosted projects with LambdaTest Selenium grid using LambdaTest Tunnel. All you would have to do is set up an SSH tunnel using tunnel and pass toggle `tunnel = True` via desired capabilities. LambdaTest Tunnel establishes a secure SSH protocol based tunnel that allows you in testing your locally hosted or privately hosted pages, even before they are live.
+
+Refer our [LambdaTest Tunnel documentation](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/) for more information.
+
+Here’s how you can establish LambdaTest Tunnel.
+
+Download the binary file of:
+* [LambdaTest Tunnel for Windows](https://downloads.lambdatest.com/tunnel/v3/windows/64bit/LT_Windows.zip)
+* [LambdaTest Tunnel for macOS](https://downloads.lambdatest.com/tunnel/v3/mac/64bit/LT_Mac.zip)
+* [LambdaTest Tunnel for Linux](https://downloads.lambdatest.com/tunnel/v3/linux/64bit/LT_Linux.zip)
+
+Open command prompt and navigate to the binary folder.
+
+Run the following command:
+
+```bash
+LT -user {user’s login email} -key {user’s access key}
+```
+So if your user name is lambdatest@example.com and key is 123456, the command would be:
+
+```bash
+LT -user lambdatest@example.com -key 123456
+```
+Once you are able to connect **LambdaTest Tunnel** successfully, you would just have to pass on tunnel capabilities in the code shown below :
+
+**Tunnel Capability**
+
+```java
+DesiredCapabilities capabilities = new DesiredCapabilities();        
+        capabilities.setCapability("tunnel", true);
+```
+
+## Additional Links
+
+- [Advanced Configuration For Capabilities](https://www.lambdatest.com/support/docs/selenium-automation-capabilities/)
+- [How To Test Locally Hosted Apps](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/)
+- [How To Integrate LambdaTest With CI/CD](https://www.lambdatest.com/support/docs/integrations-with-ci-cd-tools/)
+
+## Documentation & Resources :books:
+
+      
+Visit the following links to learn more about LambdaTest's features, setup and tutorials around test automation, mobile app testing, responsive testing, and manual testing.
+
+* [LambdaTest Documentation](https://www.lambdatest.com/support/docs/)
+* [LambdaTest Blog](https://www.lambdatest.com/blog/)
+* [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/)    
+
+## LambdaTest Community :busts_in_silhouette:
+
+The [LambdaTest Community](https://community.lambdatest.com/) allows people to interact with tech enthusiasts. Connect, ask questions, and learn from tech-savvy people. Discuss best practises in web development, testing, and DevOps with professionals from across the globe 🌎
+
+## What's New At LambdaTest ❓
+
+To stay updated with the latest features and product add-ons, visit [Changelog](https://changelog.lambdatest.com/) 
+      
 ## About LambdaTest
-[LambdaTest](https://www.lambdatest.com/) is a cloud based selenium grid infrastructure that can help you run automated cross browser compatibility tests on 2000+ different browser and operating system environments. LambdaTest supports all programming languages and frameworks that are supported with Selenium, and have easy integrations with all popular CI/CD platforms. It's a perfect solution to bring your [selenium automation testing](https://www.lambdatest.com/selenium-automation) to cloud based infrastructure that not only helps you increase your test coverage over multiple desktop and mobile browsers, but also allows you to cut down your test execution time by running tests on parallel.
 
-## Additional Resources
-##### [SeleniumHQ Documentation](http://www.seleniumhq.org/docs/)
-##### [Gauge Documentation](https://docs.gauge.org/)
+[LambdaTest](https://www.lambdatest.com) is a leading test execution and orchestration platform that is fast, reliable, scalable, and secure. It allows users to run both manual and automated testing of web and mobile apps across 3000+ different browsers, operating systems, and real device combinations. Using LambdaTest, businesses can ensure quicker developer feedback and hence achieve faster go to market. Over 500 enterprises and 1 Million + users across 130+ countries rely on LambdaTest for their testing needs.    
+
+### Features
+
+* Run Selenium, Cypress, Puppeteer, Playwright, and Appium automation tests across 3000+ real desktop and mobile environments.
+* Real-time cross browser testing on 3000+ environments.
+* Test on Real device cloud
+* Blazing fast test automation with HyperExecute
+* Accelerate testing, shorten job times and get faster feedback on code changes with Test At Scale.
+* Smart Visual Regression Testing on cloud
+* 120+ third-party integrations with your favorite tool for CI/CD, Project Management, Codeless Automation, and more.
+* Automated Screenshot testing across multiple browsers in a single click.
+* Local testing of web and mobile apps.
+* Online Accessibility Testing across 3000+ desktop and mobile browsers, browser versions, and operating systems.
+* Geolocation testing of web and mobile apps across 53+ countries.
+* LT Browser - for responsive testing across 50+ pre-installed mobile, tablets, desktop, and laptop viewports
+
+    
+[<img height="70" src="https://user-images.githubusercontent.com/70570645/169649126-ed61f6de-49b5-4593-80cf-3391ca40d665.PNG">](https://accounts.lambdatest.com/register)
+
+
+      
+## We are here to help you :headphones:
+
+* Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
+* For more info, visit - https://www.lambdatest.com
