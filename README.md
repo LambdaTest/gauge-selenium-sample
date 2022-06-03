@@ -1,4 +1,4 @@
-# Selenium Automation Testing With Gauge On LambdaTest
+# Run Selenium Tests With Gauge On LambdaTest
 
 ![image](https://user-images.githubusercontent.com/70570645/171434468-f7c1b5bb-91cd-4165-84b3-f62b8b1be433.png)
 
@@ -6,15 +6,15 @@
 
 
 <p align="center">
-  <a href="https://www.lambdatest.com/blog/" target="_bank">Blog</a>
+  <a href="https://www.lambdatest.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Blog</a>
   &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/support/docs/" target="_bank">Docs</a>
+  <a href="https://www.lambdatest.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Docs</a>
   &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/learning-hub/" target="_bank">Learning Hub</a>
+  <a href="https://www.lambdatest.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Learning Hub</a>
   &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/newsletter/" target="_bank">Newsletter</a>
+  <a href="https://www.lambdatest.com/newsletter/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Newsletter</a>
   &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/certifications/" target="_bank">Certifications</a>
+  <a href="https://www.lambdatest.com/certifications/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Certifications</a>
   &nbsp; &#8901; &nbsp;
   <a href="https://www.youtube.com/c/LambdaTest" target="_bank">YouTube</a>
 </p>
@@ -22,6 +22,7 @@
 &emsp;
 &emsp;
 
+[<img height="70" width="220" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register)
 
 ## Table Of Contents
 
@@ -182,9 +183,9 @@ DesiredCapabilities capabilities = new DesiredCapabilities();
       
 Visit the following links to learn more about LambdaTest's features, setup and tutorials around test automation, mobile app testing, responsive testing, and manual testing.
 
-* [LambdaTest Documentation](https://www.lambdatest.com/support/docs/)
-* [LambdaTest Blog](https://www.lambdatest.com/blog/)
-* [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/)    
+* [LambdaTest Documentation](https://www.lambdatest.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
+* [LambdaTest Blog](https://www.lambdatest.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
+* [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)    
 
 ## LambdaTest Community :busts_in_silhouette:
 
@@ -196,7 +197,7 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
       
 ## About LambdaTest
 
-[LambdaTest](https://www.lambdatest.com) is a leading test execution and orchestration platform that is fast, reliable, scalable, and secure. It allows users to run both manual and automated testing of web and mobile apps across 3000+ different browsers, operating systems, and real device combinations. Using LambdaTest, businesses can ensure quicker developer feedback and hence achieve faster go to market. Over 500 enterprises and 1 Million + users across 130+ countries rely on LambdaTest for their testing needs.    
+[LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample) is a leading test execution and orchestration platform that is fast, reliable, scalable, and secure. It allows users to run both manual and automated testing of web and mobile apps across 3000+ different browsers, operating systems, and real device combinations. Using LambdaTest, businesses can ensure quicker developer feedback and hence achieve faster go to market. Over 500 enterprises and 1 Million + users across 130+ countries rely on LambdaTest for their testing needs.    
 
 ### Features
 
@@ -214,11 +215,10 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
 * LT Browser - for responsive testing across 50+ pre-installed mobile, tablets, desktop, and laptop viewports
 
     
-[<img height="70" src="https://user-images.githubusercontent.com/70570645/169649126-ed61f6de-49b5-4593-80cf-3391ca40d665.PNG">](https://accounts.lambdatest.com/register)
-
+[<img height="70" width="220" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register)
 
       
 ## We are here to help you :headphones:
 
 * Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
-* For more info, visit - https://www.lambdatest.com
+* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
