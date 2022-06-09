@@ -4,9 +4,11 @@ import com.thoughtworks.gauge.AfterSpec;
 import com.thoughtworks.gauge.BeforeSpec;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -39,6 +41,11 @@ public class DriverFactory {
             capabilities.setCapability("platform", System.getenv("PLATFORM"));
             capabilities.setCapability("build", "Java Gauge Framework");
             capabilities.setCapability("name", "Sample Gauge Test");
+
+            // Extension upload here using chrome options
+            ChromeOptions options = new ChromeOptions();
+            options.addExtensions(new File("./LambdatestScreenshotExtension.crx"));
+            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
         } catch (MalformedURLException e) {
