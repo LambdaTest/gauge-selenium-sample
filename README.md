@@ -1,4 +1,4 @@
-# Run Selenium Tests With Gauge On LambdaTest
+# Run Selenium Tests With Gauge On LambdaTest (Browser Cache Clearing Example)
 
 ![image](https://user-images.githubusercontent.com/70570645/171434468-f7c1b5bb-91cd-4165-84b3-f62b8b1be433.png)
 
@@ -93,14 +93,17 @@ Make sure you have your LambdaTest credentials with you to run test automation s
 ```java
 DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", "chrome");
-        capabilities.setCapability("version", "70.0");
+        capabilities.setCapability("version", "latest");
         capabilities.setCapability("platform", "win10"); // If this cap isn't specified, it will just get the any available one
         capabilities.setCapability("build", "LambdaTestSampleApp");
         capabilities.setCapability("name", "LambdaTestJavaSample");
-        capabilities.setCapability("network", true); // To enable network logs
-        capabilities.setCapability("visual", true); // To enable step by step screenshot
-        capabilities.setCapability("video", true); // To enable video recording
-        capabilities.setCapability("console", true); // To capture console logs
+
+```
+### Clearing Browser Cache after Test
+```java
+ // Clearing browser Cache after Test
+        driver.manage().deleteAllCookies(); // delete all cookies
+        Thread.sleep(7000); // wait 7 seconds to clear cookies.
 ```
 You can generate capabilities for your test requirements with the help of [Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/).
 

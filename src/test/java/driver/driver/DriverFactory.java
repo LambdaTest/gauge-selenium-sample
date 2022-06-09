@@ -39,10 +39,6 @@ public class DriverFactory {
             capabilities.setCapability("platform", System.getenv("PLATFORM"));
             capabilities.setCapability("build", "Java Gauge Framework");
             capabilities.setCapability("name", "Sample Gauge Test");
-            capabilities.setCapability("geoLocation", "US");
-            capabilities.setCapability("network", false); // To enable network logs
-            capabilities.setCapability("visual", false); // To enable step by step screenshot
-            capabilities.setCapability("console", false); // To capture console logs
 
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
         } catch (MalformedURLException e) {
@@ -54,8 +50,11 @@ public class DriverFactory {
     }
 
     @AfterSpec
-    public void tearDown() {
+    public void tearDown() throws InterruptedException {
         if (driver != null) {
+            // Clearing browser Cache after Test
+            driver.manage().deleteAllCookies(); // delete all cookies
+            Thread.sleep(7000); // wait 7 seconds to clear cookies.
             ((JavascriptExecutor) driver).executeScript("lambda-status=" + status);
             driver.quit();
         }
