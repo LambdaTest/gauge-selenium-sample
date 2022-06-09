@@ -1,4 +1,4 @@
-# Run Selenium Tests With Gauge On LambdaTest (Incogito mode Example)
+# Run Selenium Tests With Gauge On LambdaTest (Scrolling element into view and scroll by pixel testng selenium Example)
 
 ![image](https://user-images.githubusercontent.com/70570645/171434468-f7c1b5bb-91cd-4165-84b3-f62b8b1be433.png)
 
@@ -97,13 +97,24 @@ DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platform", "win10"); // If this cap isn't specified, it will just get the any available one
         capabilities.setCapability("build", "LambdaTestSampleApp");
         capabilities.setCapability("name", "LambdaTestJavaSample");
-        
-         ChromeOptions options = new ChromeOptions ();
-        // Setting chrome flag for incognito mode
-        options.addArguments("--incognito");
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 ```
+### Scrolling element into view and scroll by pixel gauge selenium code
+```java
+// Locating element by link text 
+        WebElement Element = driver.findElement(By.linkText("Book a Demo"));
 
+        // Scrolling down the page till the element is found
+        driver.executeScript("arguments[0].scrollIntoView();", Element);
+        Thread.sleep(1500);
+
+        // Scrolling down by pixels
+        driver.executeScript("window.scrollBy(0,-500)", "");
+
+        Thread.sleep(1500);
+
+        // Scrolling up by pixels
+        driver.executeScript("window.scrollBy(0,500)", "");
+```
 You can generate capabilities for your test requirements with the help of [Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/).
 
 ### Executing The Test

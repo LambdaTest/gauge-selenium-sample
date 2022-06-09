@@ -4,6 +4,7 @@ import com.thoughtworks.gauge.Step;
 import driver.driver.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -24,29 +25,30 @@ public class StepImplementation_ToDo {
   public void gotoApp() throws InterruptedException {
 
         System.out.println(DriverFactory.getDriver());
+        driver.get("https://lambdatest.com");
+
+        // Locating element by link text 
+        WebElement Element = driver.findElement(By.linkText("Book a Demo"));
+
+        // Scrolling down the page till the element is found
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", Element);
+        Thread.sleep(1500);
+
+        // Scrolling down by pixels
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-500)", "");
+
+        Thread.sleep(1500);
+
+        // Scrolling up by pixels
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)", "");
+
+        Thread.sleep(1500);
+
+
         driver.get("https://lambdatest.github.io/sample-todo-app/");
         String title = driver.getTitle();
+
         
-         /*
-         * text(): A built-in method in Selenium WebDriver that is used with XPath
-         * locator to locate an element based on its exact text value.
-         * Example: //*[ text() = ‘5 of 5 remaining’ ]
-         * contains(): Similar to the text() method, contains() is another built-in
-         * method used to locate an element based on partial text match.
-         * For example, if we need to locate a label that has “5 of 5 remaining” as its
-         * text, it can be located using the following line of code with Xpath.
-         * Example: //*[ contains (text(), ‘5 of 5’ ) ]
-         */
-
-        // Locating element with text()
-        WebElement e = driver.findElement(By.xpath("//*[text()='5 of 5 remaining']"));
-        System.out.println(e.getText());
-
-        // located element with contains()
-        WebElement m = driver.findElement(By.xpath("//*[contains(text(),'5 of 5')]"));
-        System.out.println(m.getText());
-
-
         assertEquals(title,"Sample page - lambdatest.com");
   }
 
