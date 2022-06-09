@@ -42,10 +42,7 @@ public class DriverFactory {
             capabilities.setCapability("build", "Java Gauge Framework");
             capabilities.setCapability("name", "Sample Gauge Test");
 
-            // Extension upload here using chrome options
-            ChromeOptions options = new ChromeOptions();
-            options.addExtensions(new File("./LambdatestScreenshotExtension.crx"));
-            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+            capabilities.setCapability("geoLocation","AR"); //Geolocation capability, check LambdaTest Capability Generator
 
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
         } catch (MalformedURLException e) {
