@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 public class DriverFactory {
 
@@ -36,13 +37,18 @@ public class DriverFactory {
 
         try {
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("browserName", System.getenv("BROWSER"));
-            capabilities.setCapability("version", System.getenv("BROWSER_VERSION"));
-            capabilities.setCapability("platform", System.getenv("PLATFORM"));
-            capabilities.setCapability("build", "Java Gauge Framework");
-            capabilities.setCapability("name", "Sample Gauge Test");
+        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("browserVersion", "97");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("user", System.getenv("LT_USERNAME"));
+        ltOptions.put("accessKey", System.getenv("LT_ACCESS_KEY"));
+        ltOptions.put("build", "Selenium 4 gauge");
+        ltOptions.put("name", this.getClass().getName());
+        ltOptions.put("platformName", "Windows 10");
+        ltOptions.put("seCdp", true);  //chrome dev tool protocol caps
+        ltOptions.put("selenium_version", "4.0.0"); //Selenium 4
 
-            capabilities.setCapability("timezone","UTC+03:00"); //Timezone capability to set the timezone
+        capabilities.setCapability("LT:Options", ltOptions);
 
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
         } catch (MalformedURLException e) {

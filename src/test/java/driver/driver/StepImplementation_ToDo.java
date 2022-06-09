@@ -3,12 +3,20 @@ package driver.driver;
 import com.thoughtworks.gauge.Step;
 import driver.driver.DriverFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.remote.Augmenter;
 
-import java.util.Set;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.openqa.selenium.devtools.HasDevTools;
+import org.openqa.selenium.devtools.v97.performance.*;
+import org.openqa.selenium.devtools.v97.performance.model.Metric;
+
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
@@ -16,6 +24,7 @@ import static org.junit.Assert.assertEquals;
 public class StepImplementation_ToDo {
 
     private final WebDriver driver;
+    public WebDriver cdpDriver;
 
     public StepImplementation_ToDo() {
         this.driver = DriverFactory.getDriver();
@@ -25,9 +34,29 @@ public class StepImplementation_ToDo {
   public void gotoApp() throws InterruptedException {
 
         System.out.println(DriverFactory.getDriver());
-        driver.get("https://webbrowsertools.com/timezone/");
 
-        Thread.sleep(15000);
+        cdpDriver=driver;
+        Augmenter augmenter = new Augmenter();
+        cdpDriver = augmenter.augment(cdpDriver);
+
+        DevTools devTools = ((HasDevTools) cdpDriver).getDevTools();
+        devTools.createSession();
+
+        devTools.send(Performance.enable(Optional.empty()));
+        List<Metric> metricList = devTools.send(Performance.getMetrics());
+
+        cdpDriver.get("https://lambdatest.com");
+
+        boolean success=false;
+        for (Metric m : metricList) {
+            System.out.println(m.getName() + " = " + m.getValue());
+            success = true;
+        }
+        if (success) {
+            markStatus("passed", "Performance metrics successfully fetched", cdpDriver);
+        } else {
+            markStatus("failed", "Unable to fetch Performance metrics", cdpDriver);
+        }
 
 
         driver.get("https://lambdatest.github.io/sample-todo-app/");
@@ -59,4 +88,10 @@ public class StepImplementation_ToDo {
       WebElement addButton = driver.findElement(By.id("addbutton"));
       addButton.click();
   }
+
+  public static void markStatus(String status, String reason, WebDriver driver) {
+    JavascriptExecutor jsExecute = (JavascriptExecutor) driver;
+    jsExecute.executeScript("lambda-status=" + status);
+    System.out.println(reason);
+}
 }

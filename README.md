@@ -91,13 +91,19 @@ Make sure you have your LambdaTest credentials with you to run test automation s
 **Step 4:** In the test script, you need to update your test capabilities. In this code, we are passing browser, browser version, and operating system information, along with LambdaTest Selenium grid capabilities via capabilities object. The capabilities object in the above code are defined as:
 
 ```java
-DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "chrome");
-        capabilities.setCapability("version", "latest");
-        capabilities.setCapability("platform", "win10"); // If this cap isn't specified, it will just get the any available one
-        capabilities.setCapability("build", "LambdaTestSampleApp");
-        capabilities.setCapability("name", "LambdaTestJavaSample");
-        capabilities.setCapability("timezone","UTC+03:00"); //Timezone capability to set the timezone
+ DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "Chrome");
+        capabilities.setCapability("browserVersion", "97");
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("user", System.getenv("LT_USERNAME"));
+        ltOptions.put("accessKey", System.getenv("LT_ACCESS_KEY"));
+        ltOptions.put("build", "Selenium 4 gauge");
+        ltOptions.put("name", this.getClass().getName());
+        ltOptions.put("platformName", "Windows 10");
+        ltOptions.put("seCdp", true);  //chrome dev tool protocol caps
+        ltOptions.put("selenium_version", "4.0.0"); //Selenium 4
+
+        capabilities.setCapability("LT:Options", ltOptions);
 ```
 
 You can generate capabilities for your test requirements with the help of [Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/).
