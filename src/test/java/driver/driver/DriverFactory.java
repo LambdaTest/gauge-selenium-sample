@@ -42,22 +42,10 @@ public class DriverFactory {
             capabilities.setCapability("build", "Java Gauge Framework");
             capabilities.setCapability("name", "Sample Gauge Test");
 
-           // Chrome flag for headless using chrome options
-        ChromeOptions options = new ChromeOptions();
-
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless"); // headless flag for chrome
-        options.addArguments("disable-gpu");
-
-        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-
-        /*
-         * At lambdatest you can execute headless tests via `headless` capability on
-         * chrome, firefox and microsoft edge browser
-         */
-
-        // lambdatest Headless mode capability
-        // capabilities.setCapability("headless",true);
+            ChromeOptions options = new ChromeOptions ();
+            // Setting chrome flag for incognito mode
+            options.addArguments("--incognito");
+            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
         } catch (MalformedURLException e) {

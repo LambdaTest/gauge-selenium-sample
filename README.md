@@ -1,4 +1,4 @@
-# Run Selenium Tests With Gauge On LambdaTest (Headless mode Example)
+# Run Selenium Tests With Gauge On LambdaTest (Incogito mode Example)
 
 ![image](https://user-images.githubusercontent.com/70570645/171434468-f7c1b5bb-91cd-4165-84b3-f62b8b1be433.png)
 
@@ -97,22 +97,11 @@ DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platform", "win10"); // If this cap isn't specified, it will just get the any available one
         capabilities.setCapability("build", "LambdaTestSampleApp");
         capabilities.setCapability("name", "LambdaTestJavaSample");
-        // Chrome flag for headless using chrome options
-        ChromeOptions options = new ChromeOptions();
-
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless"); // headless flag for chrome
-        options.addArguments("disable-gpu");
-
+        
+         ChromeOptions options = new ChromeOptions ();
+        // Setting chrome flag for incognito mode
+        options.addArguments("--incognito");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-
-        /*
-         * At lambdatest you can execute headless tests via `headless` capability on
-         * chrome, firefox and microsoft edge browser
-         */
-
-        // lambdatest Headless mode capability
-        // caps.setCapability("headless",true);
 ```
 
 You can generate capabilities for your test requirements with the help of [Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/).
