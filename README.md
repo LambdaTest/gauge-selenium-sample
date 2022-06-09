@@ -1,4 +1,4 @@
-# Run Selenium Tests With Gauge On LambdaTest (Cookies Handling Example)
+# Run Selenium Tests With Gauge On LambdaTest (Locating element with text and partial text Example)
 
 ![image](https://user-images.githubusercontent.com/70570645/171434468-f7c1b5bb-91cd-4165-84b3-f62b8b1be433.png)
 
@@ -99,22 +99,15 @@ DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("name", "LambdaTestJavaSample");
 
 ```
-### Handling cookies in java gauge
+### Locating element with text and partial text gauge java
 ```java
-driver.manage().addCookie(new Cookie("cookieName", "lambdatest")); // Creates and adds the cookie
+// Locating element with text()
+        WebElement e = driver.findElement(By.xpath("//*[text()='5 of 5 remaining']"));
+        System.out.println(e.getText());
 
-        Set<Cookie> cookiesSet = driver.manage().getCookies(); // Returns the List of all Cookies
-
-        for (Cookie itemCookie : cookiesSet) {
-            System.out.println((itemCookie.getName() + ";" + itemCookie.getValue() + ";" + itemCookie.getDomain() + ";"
-                    + itemCookie.getPath() + ";" + itemCookie.getExpiry() + ";" + itemCookie.isSecure()));
-        }
-
-        driver.manage().getCookieNamed("cookieName"); // Returns the specific cookie according to name
-
-        driver.manage().deleteCookie(driver.manage().getCookieNamed("cookieName")); // Deletes the specific cookie
-        driver.manage().deleteCookieNamed("cookieName"); // Deletes the specific cookie according to the Name
-        driver.manage().deleteAllCookies(); // Deletes all the cookies
+        // located element with contains()
+        WebElement m = driver.findElement(By.xpath("//*[contains(text(),'5 of 5')]"));
+        System.out.println(m.getText());
 ```
 You can generate capabilities for your test requirements with the help of [Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/).
 

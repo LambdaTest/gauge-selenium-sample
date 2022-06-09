@@ -26,20 +26,25 @@ public class StepImplementation_ToDo {
         System.out.println(DriverFactory.getDriver());
         driver.get("https://lambdatest.github.io/sample-todo-app/");
         String title = driver.getTitle();
-        driver.manage().addCookie(new Cookie("cookieName", "lambdatest")); // Creates and adds the cookie
+        
+         /*
+         * text(): A built-in method in Selenium WebDriver that is used with XPath
+         * locator to locate an element based on its exact text value.
+         * Example: //*[ text() = ‘5 of 5 remaining’ ]
+         * contains(): Similar to the text() method, contains() is another built-in
+         * method used to locate an element based on partial text match.
+         * For example, if we need to locate a label that has “5 of 5 remaining” as its
+         * text, it can be located using the following line of code with Xpath.
+         * Example: //*[ contains (text(), ‘5 of 5’ ) ]
+         */
 
-        Set<Cookie> cookiesSet = driver.manage().getCookies(); // Returns the List of all Cookies
+        // Locating element with text()
+        WebElement e = driver.findElement(By.xpath("//*[text()='5 of 5 remaining']"));
+        System.out.println(e.getText());
 
-        for (Cookie itemCookie : cookiesSet) {
-            System.out.println((itemCookie.getName() + ";" + itemCookie.getValue() + ";" + itemCookie.getDomain() + ";"
-                    + itemCookie.getPath() + ";" + itemCookie.getExpiry() + ";" + itemCookie.isSecure()));
-        }
-
-        driver.manage().getCookieNamed("cookieName"); // Returns the specific cookie according to name
-
-        driver.manage().deleteCookie(driver.manage().getCookieNamed("cookieName")); // Deletes the specific cookie
-        driver.manage().deleteCookieNamed("cookieName"); // Deletes the specific cookie according to the Name
-        driver.manage().deleteAllCookies(); // Deletes all the cookies
+        // located element with contains()
+        WebElement m = driver.findElement(By.xpath("//*[contains(text(),'5 of 5')]"));
+        System.out.println(m.getText());
 
 
         assertEquals(title,"Sample page - lambdatest.com");
