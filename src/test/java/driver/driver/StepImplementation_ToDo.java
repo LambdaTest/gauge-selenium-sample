@@ -3,9 +3,11 @@ package driver.driver;
 import com.thoughtworks.gauge.Step;
 import driver.driver.DriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
@@ -24,6 +26,22 @@ public class StepImplementation_ToDo {
         System.out.println(DriverFactory.getDriver());
         driver.get("https://lambdatest.github.io/sample-todo-app/");
         String title = driver.getTitle();
+        driver.manage().addCookie(new Cookie("cookieName", "lambdatest")); // Creates and adds the cookie
+
+        Set<Cookie> cookiesSet = driver.manage().getCookies(); // Returns the List of all Cookies
+
+        for (Cookie itemCookie : cookiesSet) {
+            System.out.println((itemCookie.getName() + ";" + itemCookie.getValue() + ";" + itemCookie.getDomain() + ";"
+                    + itemCookie.getPath() + ";" + itemCookie.getExpiry() + ";" + itemCookie.isSecure()));
+        }
+
+        driver.manage().getCookieNamed("cookieName"); // Returns the specific cookie according to name
+
+        driver.manage().deleteCookie(driver.manage().getCookieNamed("cookieName")); // Deletes the specific cookie
+        driver.manage().deleteCookieNamed("cookieName"); // Deletes the specific cookie according to the Name
+        driver.manage().deleteAllCookies(); // Deletes all the cookies
+
+
         assertEquals(title,"Sample page - lambdatest.com");
   }
 

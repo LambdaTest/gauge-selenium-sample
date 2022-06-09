@@ -1,4 +1,4 @@
-# Run Selenium Tests With Gauge On LambdaTest (Browser Cache Clearing Example)
+# Run Selenium Tests With Gauge On LambdaTest (Cookies Handling Example)
 
 ![image](https://user-images.githubusercontent.com/70570645/171434468-f7c1b5bb-91cd-4165-84b3-f62b8b1be433.png)
 
@@ -99,11 +99,22 @@ DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("name", "LambdaTestJavaSample");
 
 ```
-### Clearing Browser Cache after Test
+### Handling cookies in java gauge
 ```java
- // Clearing browser Cache after Test
-        driver.manage().deleteAllCookies(); // delete all cookies
-        Thread.sleep(7000); // wait 7 seconds to clear cookies.
+driver.manage().addCookie(new Cookie("cookieName", "lambdatest")); // Creates and adds the cookie
+
+        Set<Cookie> cookiesSet = driver.manage().getCookies(); // Returns the List of all Cookies
+
+        for (Cookie itemCookie : cookiesSet) {
+            System.out.println((itemCookie.getName() + ";" + itemCookie.getValue() + ";" + itemCookie.getDomain() + ";"
+                    + itemCookie.getPath() + ";" + itemCookie.getExpiry() + ";" + itemCookie.isSecure()));
+        }
+
+        driver.manage().getCookieNamed("cookieName"); // Returns the specific cookie according to name
+
+        driver.manage().deleteCookie(driver.manage().getCookieNamed("cookieName")); // Deletes the specific cookie
+        driver.manage().deleteCookieNamed("cookieName"); // Deletes the specific cookie according to the Name
+        driver.manage().deleteAllCookies(); // Deletes all the cookies
 ```
 You can generate capabilities for your test requirements with the help of [Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/).
 
