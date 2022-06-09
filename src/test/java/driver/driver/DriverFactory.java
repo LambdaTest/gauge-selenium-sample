@@ -42,10 +42,7 @@ public class DriverFactory {
             capabilities.setCapability("build", "Java Gauge Framework");
             capabilities.setCapability("name", "Sample Gauge Test");
 
-            ChromeOptions options = new ChromeOptions ();
-            // Setting chrome flag for incognito mode
-            options.addArguments("--incognito");
-            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+            capabilities.setCapability("timezone","UTC+03:00"); //Timezone capability to set the timezone
 
             driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
         } catch (MalformedURLException e) {

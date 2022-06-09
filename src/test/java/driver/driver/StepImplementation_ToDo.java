@@ -25,24 +25,9 @@ public class StepImplementation_ToDo {
   public void gotoApp() throws InterruptedException {
 
         System.out.println(DriverFactory.getDriver());
-        driver.get("https://lambdatest.com");
+        driver.get("https://webbrowsertools.com/timezone/");
 
-        // Locating element by link text 
-        WebElement Element = driver.findElement(By.linkText("Book a Demo"));
-
-        // Scrolling down the page till the element is found
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", Element);
-        Thread.sleep(1500);
-
-        // Scrolling down by pixels
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,-500)", "");
-
-        Thread.sleep(1500);
-
-        // Scrolling up by pixels
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,500)", "");
-
-        Thread.sleep(1500);
+        Thread.sleep(15000);
 
 
         driver.get("https://lambdatest.github.io/sample-todo-app/");
