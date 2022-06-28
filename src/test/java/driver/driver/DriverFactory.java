@@ -23,9 +23,11 @@ public class DriverFactory {
     public static final String gridURL = "@hub.lambdatest.com/wd/hub";
     public String status = "passed";
 
-    private static WebDriver driver = null;
+    private  WebDriver driver = null;
 
-    public static WebDriver getDriver() {
+    public  WebDriver getDriver() {
+        if(driver==null)
+             this.setUp();
         return driver;
     }
 
@@ -39,7 +41,6 @@ public class DriverFactory {
             capabilities.setCapability("platform", System.getenv("PLATFORM"));
             capabilities.setCapability("build", "Java Gauge Framework");
             capabilities.setCapability("name", "Sample Gauge Test");
-            capabilities.setCapability("geoLocation", "US");
             capabilities.setCapability("network", false); // To enable network logs
             capabilities.setCapability("visual", false); // To enable step by step screenshot
             capabilities.setCapability("console", false); // To capture console logs

@@ -15,13 +15,13 @@ public class StepImplementation_ToDo {
     private final WebDriver driver;
 
     public StepImplementation_ToDo() {
-        this.driver = DriverFactory.getDriver();
+        this.driver = new DriverFactory().getDriver();
     }
 
   @Step("Open the todo app")
   public void gotoApp() throws InterruptedException {
 
-        System.out.println(DriverFactory.getDriver());
+        System.out.println(this.driver);
         driver.get("https://lambdatest.github.io/sample-todo-app/");
         String title = driver.getTitle();
         assertEquals(title,"Sample page - lambdatest.com");
