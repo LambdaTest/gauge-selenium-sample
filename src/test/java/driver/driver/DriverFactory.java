@@ -4,62 +4,65 @@ import com.thoughtworks.gauge.AfterSpec;
 import com.thoughtworks.gauge.BeforeSpec;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DriverFactory {
 
-    // Get a new WebDriver Instance.
-    // There are various implementations for this depending on browser/OS. The
-    // required browser/OS can be set as an environment variable.
-    // Refer
-    // http://getgauge.io/documentation/user/current/managing_environments/README.html
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final String USERNAME = System.getenv("LT_USERNAME");
+    private static final String ACCESS_KEY = System.getenv("LT_ACCESS_KEY");
+    private static final String GRID_URL = "https://" + USERNAME + ":" + ACCESS_KEY + "@hub.lambdatest.com/wd/hub";
 
-    private static final String username = System.getenv("LT_USERNAME");
-    private static final String accesskey = System.getenv("LT_ACCESS_KEY");
-    public static final String gridURL = "@hub.lambdatest.com/wd/hub";
-    public String status = "passed";
-
-    private  WebDriver driver = null;
-
-    public  WebDriver getDriver() {
-        if(driver==null)
-             this.setUp();
-        return driver;
+    public static WebDriver getDriver() {
+        return driver.get();
     }
 
     @BeforeSpec
     public void setUp() {
+        initDriver();
+    }
 
-        try {
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("browserName", System.getenv("BROWSER"));
-            capabilities.setCapability("version", System.getenv("BROWSER_VERSION"));
-            capabilities.setCapability("platform", System.getenv("PLATFORM"));
-            capabilities.setCapability("build", "Java Gauge Framework");
-            capabilities.setCapability("name", "Sample Gauge Test");
-            capabilities.setCapability("network", false); // To enable network logs
-            capabilities.setCapability("visual", false); // To enable step by step screenshot
-            capabilities.setCapability("console", false); // To capture console logs
+    public static void initDriver() {
+        if (driver.get() == null) {
+            try {
+                ChromeOptions browserOptions = new ChromeOptions();
 
-            driver = new RemoteWebDriver(new URL("https://" + username + ":" + accesskey + gridURL), capabilities);
-        } catch (MalformedURLException e) {
-            System.out.println("Invalid grid URL");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+                Map<String, Object> ltOptions = new HashMap<>();
+                ltOptions.put("build", "Java Gauge Parallel Test");
+                ltOptions.put("name", "Sample Gauge Test");
+                ltOptions.put("platformName", System.getenv("PLATFORM") != null ? System.getenv("PLATFORM") : "Windows 10");
+                ltOptions.put("browserVersion", System.getenv("BROWSER_VERSION") != null ? System.getenv("BROWSER_VERSION") : "latest");
+                ltOptions.put("project", "Gauge Selenium Sample");
+                ltOptions.put("w3c", true);
+
+                browserOptions.setCapability("browserName", System.getenv("BROWSER") != null ? System.getenv("BROWSER") : "chrome");
+                browserOptions.setCapability("lt:options", ltOptions);
+
+                driver.set(new RemoteWebDriver(new URL(GRID_URL), browserOptions));
+
+            } catch (Exception e) {
+                System.err.println("Error initializing driver: " + e.getMessage());
+            }
         }
-
     }
 
     @AfterSpec
     public void tearDown() {
-        if (driver != null) {
-            ((JavascriptExecutor) driver).executeScript("lambda-status=" + status);
-            driver.quit();
+        WebDriver currentDriver = driver.get();
+        if (currentDriver != null) {
+            try {
+                ((JavascriptExecutor) currentDriver).executeScript("lambda-status=passed");
+                currentDriver.quit();
+            } catch (Exception e) {
+                System.err.println("Error during teardown: " + e.getMessage());
+            } finally {
+                driver.remove();
+            }
         }
     }
-
 }
