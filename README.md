@@ -1,224 +1,121 @@
-# Run Selenium Tests With Gauge On LambdaTest
-
-![image](https://user-images.githubusercontent.com/70570645/171434468-f7c1b5bb-91cd-4165-84b3-f62b8b1be433.png)
-
-*Learn how to use Gauge framework to configure and run your Java automation testing scripts on the LambdaTest platform.*
-
+﻿# Run Selenium Tests with Gauge on TestMu AI (Formerly LambdaTest)
 
 <p align="center">
-  <a href="https://www.lambdatest.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Blog</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Docs</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Learning Hub</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/newsletter/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Newsletter</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.lambdatest.com/certifications/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample" target="_bank">Certifications</a>
-  &nbsp; &#8901; &nbsp;
-  <a href="https://www.youtube.com/c/LambdaTest" target="_bank">YouTube</a>
+  <a href="https://www.testmuai.com/"><img src="https://img.shields.io/badge/MADE%20BY%20TestMu%20AI-000000.svg?style=for-the-badge&labelColor=000" alt="Made by TestMu AI"></a>
+  <a href="https://central.sonatype.com/artifact/org.seleniumhq.selenium/selenium-java"><img src="https://img.shields.io/maven-central/v/org.seleniumhq.selenium/selenium-java.svg?style=for-the-badge&labelColor=000000" alt="Selenium version"></a>
+  <a href="https://community.testmuai.com/"><img src="https://img.shields.io/badge/Join%20the%20community-blueviolet.svg?style=for-the-badge&labelColor=000000" alt="Community"></a>
 </p>
-&emsp;
-&emsp;
-&emsp;
 
-[<img height="58" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
+## Getting Started
 
-## Table Of Contents
+[TestMu AI](https://www.testmuai.com/) (Formerly LambdaTest) is the world's first full-stack AI Agentic Quality Engineering platform that empowers teams to test intelligently, smarter, and ship faster. Built for scale, it offers a full-stack testing cloud with 10K+ real devices and 3,000+ browsers. With AI-native test management, MCP servers, and agent-based automation, TestMu AI supports Selenium, Appium, Playwright, and all major frameworks. 
 
-* [Pre-requisites](#pre-requisites)
-* [Run Your First Test](#run-your-first-test)
-* [Parallel Testing With Gauge](#running-parallel-tests-using-gauge)
-* [Local Testing With Gauge](#testing-locally-hosted-or-privately-hosted-projects)
+With TestMu AI (Formerly LambdaTest), you can run Java Selenium tests using the Gauge framework. This sample shows how to configure Java + Selenium + Gauge to run on the TestMu AI cloud.
 
-## Pre-requisites
+- [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
+- Follow the [TestMu AI Documentation](https://www.testmuai.com/support/docs/) for the full setup walkthrough.
 
-Before you can start performing Java automation testing with Selenium, you would need to:
+### Prerequisites
 
-- Install the latest **Java development environment** i.e. **JDK 1.6** or higher. We recommend using the latest version.
+- Java JDK 1.6 or higher (latest recommended)
+- Maven: install from [maven.apache.org](https://maven.apache.org/) or via Homebrew on macOS/Linux
+- [Gauge framework](https://docs.gauge.org/getting_started/installing-gauge.html)
+- A [TestMu AI](https://www.testmuai.com/) account with your username and access key
 
-- Download the latest **Selenium Client** and its **WebDriver bindings** from the [official website](https://www.selenium.dev/downloads/). Latest versions of Selenium Client and WebDriver are ideal for running your automation script on LambdaTest Selenium cloud grid.
+### Setup
 
-- Install **Maven**. It can be downloaded and installed following the steps from [the official website](https://maven.apache.org/). Maven can also be installed easily on **Linux/MacOS** using [Homebrew](https://brew.sh/) package manager.
-
-- Install the **Gauge** framework from its [official website](https://docs.gauge.org/getting_started/installing-gauge.html?os=windows&language=null&ide=null).
-
-### Cloning Repo And Installing Dependencies
-
-**Step 1:** Clone the LambdaTest’s Gauge-Selenium-Sample repository and navigate to the code directory as shown below:
+Clone and install dependencies:
 
 ```bash
-git clone https://github.com/LambdaTest/gauge-selenium-sample
-cd gauge-selenium-sample
-```
-
-You may also want to run the command below to check for outdated dependencies.
-
-```bash
-mvn versions:display-dependency-updates
-```
-
-**Step 2:** Install the mandatory Selenium dependencies for Maven by running the below command:
-
-```bash
+git clone https://github.com/LambdaTest/gauge-selenium-sample && cd gauge-selenium-sample
 mvn compile
 ```
 
-### Setting Up Your Authentication
+Set your credentials as environment variables.
 
-Make sure you have your LambdaTest credentials with you to run test automation scripts on Selenium Grid. You can get these credentials from the [LambdaTest Automation Dashboard](https://automation.lambdatest.com/build?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample) or by your [LambdaTest Profile](https://accounts.lambdatest.com/login?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample).
-
-**Step 3:** Set LambdaTest **Username** and **Access Key** in environment variables.
-
-* For **Linux/macOS**:
-  
-  ```bash
-  export LT_USERNAME="YOUR_USERNAME" 
-  export LT_ACCESS_KEY="YOUR ACCESS KEY"
-  ```
-* For **Windows**:
-  ```bash
-  set LT_USERNAME="YOUR_USERNAME" 
-  set LT_ACCESS_KEY="YOUR ACCESS KEY"
-  ```
-
-## Run Your First Test
-
->**Test Scenario**: Check out the sample script [StepImplementation_ToDo.java](https://github.com/LambdaTest/gauge-selenium-sample/blob/master/src/test/java/driver/driver/StepImplementation_ToDo.java) for running Gauge tests. This Gauge automation script test a sample to-do list app by marking couple items as done, adding a new item to the list and finally displaying the count of pending items as output.
-
-### Configuring Your Test Capabilities
-
-**Step 4:** In the test script, you need to update your test capabilities. In this code, we are passing browser, browser version, and operating system information, along with LambdaTest Selenium grid capabilities via capabilities object. The capabilities object in the above code are defined as:
-
-```java
-DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "chrome");
-        capabilities.setCapability("version", "70.0");
-        capabilities.setCapability("platform", "win10"); // If this cap isn't specified, it will just get the any available one
-        capabilities.setCapability("build", "LambdaTestSampleApp");
-        capabilities.setCapability("name", "LambdaTestJavaSample");
-        capabilities.setCapability("network", true); // To enable network logs
-        capabilities.setCapability("visual", true); // To enable step by step screenshot
-        capabilities.setCapability("video", true); // To enable video recording
-        capabilities.setCapability("console", true); // To capture console logs
-```
-You can generate capabilities for your test requirements with the help of [Desired Capability Generator](https://www.lambdatest.com/capabilities-generator/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample).
-
-### Executing The Test
-
-**Step 5:** The tests can be executed in the terminal using either of the following commands:
+**macOS / Linux:**
 
 ```bash
+export LT_USERNAME="YOUR_USERNAME"
+export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+export LT_TUNNEL="YOUR_TUNNEL_NAME"
+```
+
+**Windows:**
+
+```bash
+set LT_USERNAME="YOUR_USERNAME"
+set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+set LT_TUNNEL="YOUR_TUNNEL_NAME"
+```
+
+### Run tests
+
+```
 mvn test
 ```
 
-or
+For parallel execution:
 
-```bash
+```
 mvn clean install
 ```
 
-Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on LambdaTest Automation Dashboard. 
+View results on your TestMu AI dashboard.
 
-## Run Parallel Tests Using Gauge
+### Local testing with TestMu AI Tunnel
 
-To perform Gauge parallel testing, more than one browser specifications need to be updated in the [env folder](https://github.com/LambdaTest/gauge-selenium-sample/tree/master/env) of the project. 
+To test locally hosted apps, set up the TestMu AI tunnel. OS-specific guides:
 
-For instance, we have defined specifications for Chrome, Firefox, Safari and Edge in the below screenshot. Once the test is executed, all parallel browser specifications will hit on the LambdaTest cloud grid and execute simultaneously.
+- [Local Testing on Windows](https://www.testmuai.com/support/docs/local-testing-for-windows/)
+- [Local Testing on macOS](https://www.testmuai.com/support/docs/local-testing-for-macos/)
+- [Local Testing on Linux](https://www.testmuai.com/support/docs/local-testing-for-linux/)
 
-![image](https://user-images.githubusercontent.com/70570645/170765173-b3ad947e-003f-4e64-a2dd-5bc64c99bcef.png)
+Add the following to your capabilities:
 
-In case you’d need to chuck out test for any browser, you would need to either delete the folder or comment out the code in it.
-
-### Executing Parallel Tests Using Gauge
-
-To run parallel tests using **Gauge**, we would have to execute the same command we had used for single test which would be:
-
-```bash
-mvn test OR mvn clean install
+```js
+tunnel: true,
 ```
 
-## Testing Locally Hosted Or Privately Hosted Projects
+## Contributions
 
-You can test your locally hosted or privately hosted projects with LambdaTest Selenium grid using LambdaTest Tunnel. All you would have to do is set up an SSH tunnel using tunnel and pass toggle `tunnel = True` via desired capabilities. LambdaTest Tunnel establishes a secure SSH protocol based tunnel that allows you in testing your locally hosted or privately hosted pages, even before they are live.
+Contributions are welcome. Open an issue to discuss your idea before submitting a pull request. When reporting bugs, include your Java version, OS, and Gauge version.
 
-Refer our [LambdaTest Tunnel documentation](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample) for more information.
+## TestMu AI (Formerly LambdaTest) Community
 
-Here’s how you can establish LambdaTest Tunnel.
+Connect with testers and developers in the [TestMu AI Community](https://community.testmuai.com/). Ask questions, share what you are building, and discuss best practices in test automation and DevOps.
+  
+## TestMu AI (Formerly LambdaTest) Certifications
 
-Download the binary file of:
-* [LambdaTest Tunnel for Windows](https://downloads.lambdatest.com/tunnel/v3/windows/64bit/LT_Windows.zip)
-* [LambdaTest Tunnel for macOS](https://downloads.lambdatest.com/tunnel/v3/mac/64bit/LT_Mac.zip)
-* [LambdaTest Tunnel for Linux](https://downloads.lambdatest.com/tunnel/v3/linux/64bit/LT_Linux.zip)
+Earn free [TestMu AI Certifications](https://www.testmuai.com/certifications/) for testers, developers, and QA engineers. Validate your skills in Selenium, Cypress, Playwright, Appium, Espresso and more. Industry-recognized, shareable on LinkedIn, and built by practitioners, not marketers.
 
-Open command prompt and navigate to the binary folder.
+## Learning Resources by TestMu AI (Formerly LambdaTest)
 
-Run the following command:
+Learn modern testing through tutorials, guides, videos, and weekly updates:
 
-```bash
-LT -user {user’s login email} -key {user’s access key}
-```
-So if your user name is lambdatest@example.com and key is 123456, the command would be:
+* [TestMu AI Blog](https://www.testmuai.com/blog/)
+* [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/)
+* [TestMu AI on YouTube](https://www.youtube.com/@TestMuAI)
+* [TestMu AI Newsletter](https://www.testmuai.com/newsletter/)
+  
+## LambdaTest is Now TestMu AI
 
-```bash
-LT -user lambdatest@example.com -key 123456
-```
-Once you are able to connect **LambdaTest Tunnel** successfully, you would just have to pass on tunnel capabilities in the code shown below :
+On **January 12, 2026**, [LambdaTest evolved to TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/), the world's first fully autonomous **Agentic AI Quality Engineering Platform**.
 
-**Tunnel Capability**
+Same team. Same infrastructure. Same customer accounts. All existing LambdaTest logins, scripts, capabilities, and integrations continue to work without change.
 
-```java
-DesiredCapabilities capabilities = new DesiredCapabilities();        
-        capabilities.setCapability("tunnel", true);
-```
+Find the new home for [LambdaTest](https://www.testmuai.com).
 
-## Additional Links
+### How LambdaTest Evolved into TestMu AI
 
-- [Advanced Configuration For Capabilities](https://www.lambdatest.com/support/docs/selenium-automation-capabilities/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
-- [How To Test Locally Hosted Apps](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
-- [How To Integrate LambdaTest With CI/CD](https://www.lambdatest.com/support/docs/integrations-with-ci-cd-tools/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
+In 2017, we launched LambdaTest with a simple mission: make testing fast, reliable, and accessible. As LambdaTest grew, we expanded into Test Intelligence, Visual Regression Testing, Accessibility Testing, API Testing, and Performance Testing, covering the full depth of the testing lifecycle.
 
-## Documentation & Resources :books:
+As software development entered the AI era, testing had to evolve, too. We rebuilt the architecture to be AI-native from the ground up, with autonomous agents that **plan, author, execute, analyze, and optimize tests** while keeping humans in the loop. The platform integrates with your repos, CI, IDEs, and terminals, continuously learning from every code change and development signal.
 
-      
-Visit the following links to learn more about LambdaTest's features, setup and tutorials around test automation, mobile app testing, responsive testing, and manual testing.
+That evolution earned a new name: **TestMu AI**, built for an AI-first future of quality engineering. TestMu is not a new name for us. It is the name of our annual community conference, which has brought together 100,000+ quality engineers to discuss how AI would reshape testing, long before that became an industry norm. 
 
-* [LambdaTest Documentation](https://www.lambdatest.com/support/docs/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
-* [LambdaTest Blog](https://www.lambdatest.com/blog/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
-* [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)    
+What started as a high-performance cloud testing platform has transformed into an AI-native, multi-agent system powering a connected, end-to-end quality layer. That evolution defined a new identity: LambdaTest evolved into TestMu AI, built for an AI-first future of quality engineering.
 
-## LambdaTest Community :busts_in_silhouette:
+## Support
 
-The [LambdaTest Community](https://community.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample) allows people to interact with tech enthusiasts. Connect, ask questions, and learn from tech-savvy people. Discuss best practises in web development, testing, and DevOps with professionals from across the globe 🌎
-
-## What's New At LambdaTest ❓
-
-To stay updated with the latest features and product add-ons, visit [Changelog](https://changelog.lambdatest.com/) 
-      
-## About LambdaTest
-
-[LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample) is a leading test execution and orchestration platform that is fast, reliable, scalable, and secure. It allows users to run both manual and automated testing of web and mobile apps across 3000+ different browsers, operating systems, and real device combinations. Using LambdaTest, businesses can ensure quicker developer feedback and hence achieve faster go to market. Over 500 enterprises and 1 Million + users across 130+ countries rely on LambdaTest for their testing needs.    
-
-### Features
-
-* Run Selenium, Cypress, Puppeteer, Playwright, and Appium automation tests across 3000+ real desktop and mobile environments.
-* Real-time cross browser testing on 3000+ environments.
-* Test on Real device cloud
-* Blazing fast test automation with HyperExecute
-* Accelerate testing, shorten job times and get faster feedback on code changes with Test At Scale.
-* Smart Visual Regression Testing on cloud
-* 120+ third-party integrations with your favorite tool for CI/CD, Project Management, Codeless Automation, and more.
-* Automated Screenshot testing across multiple browsers in a single click.
-* Local testing of web and mobile apps.
-* Online Accessibility Testing across 3000+ desktop and mobile browsers, browser versions, and operating systems.
-* Geolocation testing of web and mobile apps across 53+ countries.
-* LT Browser - for responsive testing across 50+ pre-installed mobile, tablets, desktop, and laptop viewports
-
-    
-[<img height="58" width="200" src="https://user-images.githubusercontent.com/70570645/171866795-52c11b49-0728-4229-b073-4b704209ddde.png">](https://accounts.lambdatest.com/register?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
-
-      
-## We are here to help you :headphones:
-
-* Got a query? we are available 24x7 to help. [Contact Us](mailto:support@lambdatest.com)
-* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=gauge-selenium-sample)
+Got a question? Email [support@testmuai.com](mailto:support@testmuai.com) or chat with us 24x7 from our chat portal.
