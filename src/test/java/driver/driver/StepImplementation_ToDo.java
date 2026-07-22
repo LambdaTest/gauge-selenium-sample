@@ -17,9 +17,9 @@ public class StepImplementation_ToDo {
             DriverFactory.initDriver();
             driver = DriverFactory.getDriver();
 
-            driver.get("https://lambdatest.github.io/sample-todo-app/");
+            driver.get("https://www.testmuai.com/selenium-playground/todo-app/");
             String title = driver.getTitle();
-            assertEquals("Modern To-Do App | LambdaTest", title, "Page title mismatch!");
+            assertEquals("Selenium Grid Online | Run Selenium Test On Cloud", title, "Page title mismatch!");
         } catch (Exception e) {
             throw new RuntimeException("Failed to open the app: " + e.getMessage(), e);
         }
