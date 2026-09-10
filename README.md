@@ -13,7 +13,7 @@
 With TestMu AI (Formerly LambdaTest), you can run Java Selenium tests using the Gauge framework. This sample shows how to configure Java + Selenium + Gauge to run on the TestMu AI cloud.
 
 - [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
-- Follow the [TestMu AI Documentation](https://www.testmuai.com/support/docs/running-gauge-tests-on-testmu-selenium-grid/) for the full setup walkthrough.
+- Follow the [Run Gauge tests with Selenium on TestMu AI](https://www.testmuai.com/support/docs/running-gauge-tests-on-testmu-selenium-grid/) for the full setup walkthrough.
 
 ### Prerequisites
 
