@@ -1,5 +1,7 @@
 ﻿# Run Selenium Tests with Gauge on TestMu AI (Formerly LambdaTest)
 
+> Automated End-to-End (E2E) testing of web apps with Selenium and Gauge across real browsers and operating systems on TestMu AI.
+
 <p align="center">
   <a href="https://www.testmuai.com/"><img src="https://img.shields.io/badge/MADE%20BY%20TestMu%20AI-000000.svg?style=for-the-badge&labelColor=000" alt="Made by TestMu AI"></a>
   <a href="https://central.sonatype.com/artifact/org.seleniumhq.selenium/selenium-java"><img src="https://img.shields.io/maven-central/v/org.seleniumhq.selenium/selenium-java.svg?style=for-the-badge&labelColor=000000" alt="Selenium version"></a>
